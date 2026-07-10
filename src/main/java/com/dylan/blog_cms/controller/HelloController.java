@@ -1,18 +1,32 @@
 package com.dylan.blog_cms.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.dylan.blog_cms.model.Post;
+import com.dylan.blog_cms.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/posts")
 public class HelloController {
-    @GetMapping("/hello")
-    public Map<String, String> sayHello() {
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Hello from Spring Boot");
-        response.put("author", "An");
-        return response;
+    @Autowired
+    private PostRepository postRepository;
+
+    @GetMapping
+    public List<Post> getAllPosts() {
+        return postRepository.findAll();
+    }
+
+    @PostMapping
+    public Post createPost(@RequestBody Post post) {
+        return postRepository.save(post);
+    }
+
+    @GetMapping("{id}")
+    public Post getPostById(@PathVariable Long id) {
+        return postRepository.findById(id).orElse(null);
     }
 }
