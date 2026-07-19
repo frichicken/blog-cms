@@ -1,8 +1,11 @@
 package com.dylan.blog_cms.controller;
 
+import com.dylan.blog_cms.dto.PostRequestDto;
+import com.dylan.blog_cms.dto.PostResponseDto;
 import com.dylan.blog_cms.model.Post;
 import com.dylan.blog_cms.repository.PostRepository;
 import com.dylan.blog_cms.service.PostService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,22 +18,22 @@ public class PostController {
     private PostService postService;
 
     @GetMapping
-    public List<Post> getAllPosts() {
+    public List<PostResponseDto> getAllPosts() {
         return postService.getAllPosts();
     }
 
     @GetMapping("/{id}")
-    public Post getPostById(@PathVariable Long id) {
+    public PostResponseDto getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
     }
 
     @PostMapping
-    public Post createPost(@RequestBody Post post) {
+    public PostResponseDto createPost(@Valid @RequestBody PostRequestDto post) {
         return postService.createPost(post);
     }
 
     @PutMapping("/{id}/publish")
-    public Post publishPost(@PathVariable Long id) {
+    public PostResponseDto publishPost(@PathVariable Long id) {
         return postService.publishPost(id);
     }
 
