@@ -2,6 +2,9 @@ package com.dylan.blog_cms.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -14,14 +17,22 @@ public class Post {
     private String category;
     private boolean published;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User author;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
     public Post() {
     }
 
-    public Post(String title, String content, String category) {
+    public Post(String title, String content, String category, User author) {
         this.title = title;
         this.content = content;
         this.category = category;
         this.published = false;
+        this.author = author;
     }
 
     public Long getId() {
@@ -59,4 +70,9 @@ public class Post {
     public void setPublished(boolean published) {
         this.published = published;
     }
+    public User getAuthor() { return author; }
+
+    public void setAuthor(User author) { this.author = author; }
+
+    public List<Comment> getComments() { return comments; }
 }
