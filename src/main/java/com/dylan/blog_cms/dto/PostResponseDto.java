@@ -15,9 +15,23 @@ public class PostResponseDto {
         this.published = published;
     }
 
-    public Long getId() { return id; }
-    public String getTitle() { return title; }
-    public String getContent() { return content; }
-    public String getCategory() { return category; }
-    public boolean isPublished() { return published; }
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
 }

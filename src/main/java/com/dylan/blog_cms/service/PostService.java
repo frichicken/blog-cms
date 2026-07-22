@@ -3,6 +3,7 @@ package com.dylan.blog_cms.service;
 import com.dylan.blog_cms.dto.PostRequestDto;
 import com.dylan.blog_cms.dto.PostResponseDto;
 import com.dylan.blog_cms.model.Post;
+import com.dylan.blog_cms.model.User;
 import com.dylan.blog_cms.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class PostService {
     }
 
     public PostResponseDto createPost(PostRequestDto dto) {
-        Post post = new Post(dto.getTitle(), dto.getContent(), dto.getCategory());
+        Post post = new Post(dto.getTitle(), dto.getContent(), dto.getCategory(), new User());
         post.setPublished(false);
         Post saved = postRepository.save(post);
         return toResponseDto(saved);

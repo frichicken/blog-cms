@@ -70,9 +70,16 @@ public class Post {
     public void setPublished(boolean published) {
         this.published = published;
     }
-    public User getAuthor() { return author; }
 
-    public void setAuthor(User author) { this.author = author; }
+    public User getAuthor() {
+        return author;
+    }
 
-    public List<Comment> getComments() { return comments; }
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
 }

@@ -29,9 +29,23 @@ public class Comment {
         this.author = author;
     }
 
-    public Long getId() { return id; }
-    public String getText() { return text; }
-    public void setText(String text) { this.text = text; }
-    public Post getPost() { return post; }
-    public User getAuthor() { return author; }
+    public Long getId() {
+        return id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
 }
