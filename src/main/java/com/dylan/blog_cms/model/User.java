@@ -14,6 +14,7 @@ public class User {
 
     private String username;
     private String email;
+    private String password;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
@@ -48,5 +49,11 @@ public class User {
 
     public List<Post> getPosts() {
         return posts;
+    }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
